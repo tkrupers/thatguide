@@ -1,12 +1,10 @@
-import {
-  STEP_TITLE_CHANGE,
-  STEP_DESCRIPTION_CHANGE
-} from 'thatlist/actions/newStep';
+import {STEP_TITLE_CHANGE, STEP_DESCRIPTION_CHANGE, NEW_STEP_SUCCESS, NEW_STEP_ERROR} from 'thatlist/actions/newStep';
 
 const initState = {
   title: '',
   description: '',
-  created: false
+  created: false,
+  error: null
 };
 
 export default function newStepReducer(state = initState, action) {
@@ -21,6 +19,14 @@ export default function newStepReducer(state = initState, action) {
         ...state,
         description: action.description
       }
+    case NEW_STEP_ERROR:
+      return {
+        ...state,
+        created: false,
+        error: action.message
+      };
+    case NEW_STEP_SUCCESS:
+      return initState;
     default:
       return state;
   }

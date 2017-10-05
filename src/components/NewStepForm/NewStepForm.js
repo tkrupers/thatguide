@@ -47,7 +47,12 @@ class NewStepForm extends React.PureComponent {
           </div>
 
           <Link to="/" className="btn btn-default" title="Cancel">Cancel</Link>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={this.props.handleSubmit}>
+            Submit
+          </button>
         </form>
       </section>
     );

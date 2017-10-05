@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 import StepDisplay from './components/StepDisplay';
 import NewStepButton from './components/NewStepButton';
-import NewStepFormContainer from './components/NewStepForm/NewStepFormContainer';
+import NewStepFormContainer from './components/NewStepForm';
 
 class App extends Component {
   render() {
@@ -21,7 +18,7 @@ class App extends Component {
               <Route path="/new-step" component={NewStepFormContainer}/>
             </div>
             <aside className="col-md-4">
-              <Route component={NewStepButton} />
+              <Route component={NewStepButton}/>
             </aside>
           </div>
         </div>

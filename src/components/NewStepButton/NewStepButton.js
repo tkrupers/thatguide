@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 /** Button to add new steps to guide */
 class NewStepButton extends React.PureComponent {
@@ -18,10 +18,7 @@ class NewStepButton extends React.PureComponent {
   render() {
     return (
       <div className="new-step__wrapper">
-        <Link
-          className="btn btn-primary"
-          title="Create new step"
-          to="/new-step">
+        <Link className="btn btn-primary" title="Create new step" to="/new-step">
           Add new step
         </Link>
       </div>

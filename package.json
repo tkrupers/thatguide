@@ -90,6 +90,7 @@
       "node"
     ]
   },
+  "proxy": "http://localhost:3001",
   "babel": {
     "presets": [
       "react-app"

@@ -1,1 +1,1 @@
-export {default} from './NewStepForm';
+export {default} from './NewStepFormContainer';

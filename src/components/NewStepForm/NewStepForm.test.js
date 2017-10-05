@@ -5,7 +5,7 @@ import NewStepForm from './NewStepForm';
 describe('NewStepForm', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<NewStepForm />)
+    wrapper = shallow(<NewStepForm/>)
   });
 
   it('should render', () => {
