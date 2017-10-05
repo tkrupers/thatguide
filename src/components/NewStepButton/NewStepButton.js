@@ -1,24 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
+/** Button to add new steps to guide */
 class NewStepButton extends React.PureComponent {
   static propTypes = {
-    handleClick: PropTypes.func.isRequired
+    /** Handles click for component */
+    handleClick: PropTypes.func.isRequired,
+    match: PropTypes.object
   };
 
   static defaultProps = {
+    /** Placeholder method */
     handleClick: () => {}
   }
 
   render() {
     return (
       <div className="new-step__wrapper">
-        <button
+        <Link
           className="btn btn-primary"
           title="Create new step"
-          onClick={this.props.handleClick}>
+          to="/new-step">
           Add new step
-        </button>
+        </Link>
       </div>
     );
   }

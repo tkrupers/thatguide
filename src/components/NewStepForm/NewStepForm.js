@@ -12,10 +12,12 @@ class NewStepForm extends React.PureComponent {
   }
 
   static propTypes = {
+    /** Handles submit for component */
     onSubmit: PropTypes.func.isRequired
   }
 
   static defaultProps = {
+    /** Placeholder function */
     onSubmit: () => {}
   }
 

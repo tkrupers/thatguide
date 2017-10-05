@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
+
 import './App.css';
 
 import StepDisplay from './components/StepDisplay';
@@ -8,19 +13,21 @@ import NewStepForm from './components/NewStepForm';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1>That Guide</h1>
+      <Router>
+        <div className="App">
+          <h1>That Guide</h1>
 
-        <div className="row">
-          <div className="col-md-8">
-            <StepDisplay />
-            <NewStepForm />
+          <div className="row">
+            <div className="col-md-8">
+              <Route exact path="/" component={StepDisplay}/>
+              <Route path="/new-step" component={NewStepForm}/>
+            </div>
+            <aside className="col-md-4">
+              <Route component={NewStepButton} />
+            </aside>
           </div>
-          <aside className="col-md-4">
-            <NewStepButton />
-          </aside>
         </div>
-      </div>
+      </Router>
     );
   }
 }
