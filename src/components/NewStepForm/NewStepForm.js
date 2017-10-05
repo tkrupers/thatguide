@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 /** Form to create a new step */
 class NewStepForm extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      stepTitle: '',
-      stepDescription: ''
-    }
-  }
-
   static propTypes = {
+    /** New step title */
+    title: PropTypes.string,
+    /** New step description */
+    description: PropTypes.string,
     /** Handles submit for component */
     onSubmit: PropTypes.func.isRequired
   }
@@ -19,11 +16,6 @@ class NewStepForm extends React.PureComponent {
   static defaultProps = {
     /** Placeholder function */
     onSubmit: () => {}
-  }
-
-  handleChange = event => {
-    const key = event.target.name;
-    this.setState({ [key]: event.target.value });
   }
 
   render() {
@@ -39,7 +31,8 @@ class NewStepForm extends React.PureComponent {
               type="text"
               className="form-control"
               placeholder="Awesome clear title"
-              onChange={this.handleChange}/>
+              value={this.props.title}
+              onChange={this.props.handleTitleChange}/>
           </div>
 
           <div className="form-group">
@@ -49,10 +42,11 @@ class NewStepForm extends React.PureComponent {
               name="stepDescription"
               className="form-control"
               placeholder="What should a dummy do?"
-              value={this.state.stepDescription}
-              onChange={this.handleChange}/>
+              value={this.props.description}
+              onChange={this.props.handleDescriptionChange}/>
           </div>
 
+          <Link to="/" className="btn btn-default" title="Cancel">Cancel</Link>
           <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </section>
