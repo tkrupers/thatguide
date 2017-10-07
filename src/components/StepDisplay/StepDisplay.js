@@ -9,9 +9,9 @@ class StepDisplay extends React.PureComponent {
   };
 
   static defaultProps = {
-    stepNumber: 1,
-    title: 'Title',
-    description: 'Lorem ipsum ap Body text is often way longer than the lead text'
+    stepNumber: 0,
+    title: 'No steps yet',
+    description: 'Begin by adding step 1 to your guide'
   };
 
   render() {
@@ -21,7 +21,7 @@ class StepDisplay extends React.PureComponent {
       <article className="step__wrapper">
         <header>
           <h3 className="step__title">
-            <span className="step__badge">{stepNumber}</span>
+            <span className="step__badge badge badge-warning">{stepNumber}</span>
             {title}
           </h3>
         </header>

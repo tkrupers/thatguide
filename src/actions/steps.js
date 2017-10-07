@@ -1,0 +1,2 @@
+export const UPDATE_STEPS = 'UPDATE_STEPS';
+export const UPDATE_STEPS_ERROR = 'UPDATE_STEPS_ERROR';
