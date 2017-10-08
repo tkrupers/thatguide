@@ -16,9 +16,11 @@ class NewStepButton extends React.PureComponent {
   }
 
   render() {
+    const {location} = this.props;
+
     return (
       <div className="new-step__wrapper">
-        <Link className="btn btn-primary" title="Create new step" to="/new-step">
+        <Link className="btn btn-primary" title="Create new step" to={`${location.pathname}/new-step`}>
           Add new step
         </Link>
       </div>

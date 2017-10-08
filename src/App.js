@@ -9,18 +9,15 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
+        <div className="container">
           <h1>That Guide</h1>
-
-          <div className="row">
-            <div className="col-md-8">
-              <Route exact path="/" component={GuideDisplay}/>
-              <Route path="/new-step" component={NewStepFormContainer}/>
-            </div>
-            <aside className="col-md-4">
-              <Route component={NewStepButton}/>
-            </aside>
+          <div className="col-md-8">
+            <Route path="/guide/:id" component={GuideDisplay}/>
+            <Route path="/guide/:id/new-step" component={NewStepFormContainer}/>
           </div>
+          <aside className="col-md-4">
+            <Route exact path="/guide/:id" component={NewStepButton}/>
+          </aside>
         </div>
       </Router>
     );

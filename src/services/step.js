@@ -3,6 +3,6 @@ export default class stepApi {
     await fetch(`/new-step`, {
       method: 'POST',
       body: JSON.stringify(payload)
-    });
+    }).then(result => result.json());
   }
 }

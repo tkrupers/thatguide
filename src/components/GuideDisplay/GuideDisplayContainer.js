@@ -2,9 +2,9 @@ import {connect} from 'react-redux';
 import GuideDisplay from './GuideDisplay';
 import {getGuideDetails} from 'thatlist/actions/guideDetails';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({guideDetails}) => {
   return {
-    guide: state.guideDetails
+    guide: guideDetails
   }
 };
 

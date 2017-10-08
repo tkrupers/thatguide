@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 
 /** Form to create a new step */
 class NewStepForm extends React.PureComponent {
@@ -19,6 +18,8 @@ class NewStepForm extends React.PureComponent {
   }
 
   render() {
+    const {history} = this.props;
+
     return (
       <section className="new-step-form__wrapper">
         <h2>New Step form</h2>
@@ -46,9 +47,10 @@ class NewStepForm extends React.PureComponent {
               onChange={this.props.handleDescriptionChange}/>
           </div>
 
-          <Link to="/" className="btn btn-default" title="Cancel">Cancel</Link>
+          <button type="button" onClick={history.goBack} className="btn btn-light" title="Cancel">Cancel</button>
+
           <button
-            type="submit"
+            type="button"
             className="btn btn-primary"
             onClick={this.props.handleSubmit}>
             Submit

@@ -23,7 +23,8 @@ const guides = {
     shortDescription: 'Short guide from api',
     authorId: 1,
     steps: [
-      {id: 1, stepNumber: 1, title: 'Step 1', description: 'Step 1 coming from api'},      {id: 2, stepNumber: 2, title: 'Step 2', description: 'Step 2 coming from api'}      
+      {id: 1, stepNumber: 1, title: 'Step 1', description: 'Step 1 coming from api'},
+      {id: 2, stepNumber: 2, title: 'Step 2', description: 'Step 2 coming from api'}      
     ]
   }
 }
