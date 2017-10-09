@@ -1,5 +1,6 @@
 import {makeActionCreator} from 'thatlist/utility/actionCreator';
 import {getNewStepSelector} from 'thatlist/selectors/steps';
+import {getCurrentGuideId} from 'thatlist/selectors/guide';
 
 /** Constants */
 
@@ -19,7 +20,9 @@ export const handleStepDescriptionChange = makeActionCreator(STEP_DESCRIPTION_CH
 export const handleSubmitNewStep = () => (dispatch, getState) => {
   // Get new form data from state
   const payload = getNewStepSelector(getState());
+  // Get current guide ID
+  const guideId = getCurrentGuideId(getState());
 
   // Dispatch submit action to saga
-  dispatch({type: NEW_STEP_SUBMIT, payload});
+  dispatch({type: NEW_STEP_SUBMIT, guideId, payload});
 }

@@ -14,4 +14,4 @@ export const getNewStepSelector = createSelector(
     title: newStep.title,
     description: newStep.description
   })
-)
+);

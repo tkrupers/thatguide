@@ -4,7 +4,7 @@ import stepApi from 'thatlist/services/step';
 
 function * postForm(action) {
   try {
-    const result = yield call(stepApi.newStep, action.payload);
+    const result = yield call(stepApi.newStep, {id: action.guideId, payload: action.payload});
     yield put({type: NEW_STEP_SUCCESS, result});
   } catch (err) {
     // TODO: add better error handling

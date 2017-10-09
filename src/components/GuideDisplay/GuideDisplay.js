@@ -17,11 +17,11 @@ class GuideDisplay extends React.PureComponent {
   }
 
   render() {
-    const {guide} = this.props;
+    const {guide, author} = this.props;
 
     return (
       <div className="container">
-        <GuideDetails {...guide} />
+        <GuideDetails {...guide} author={author}/>
         <main>
           <h3>Steps</h3>
           <StepsList />

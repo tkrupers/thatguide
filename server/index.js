@@ -8,17 +8,11 @@ const router = new Router();
 const port = process.env.PORT || 3001;
 const host = process.env.HOST || 'localhost';
 
-app.use(async(ctx, next) => {
-  const start = Date.now();
-  await next();
-  const ms = Date.now() - start;
-  ctx.set('X-Response-Time', `${ms}ms`);
-});
-
 app.use(logger());
 
 const guides = {
   1: {
+    id: 1,
     title: 'Guide 1',
     shortDescription: 'Short guide from api',
     authorId: 1,
@@ -27,7 +21,16 @@ const guides = {
       {id: 2, stepNumber: 2, title: 'Step 2', description: 'Step 2 coming from api'}      
     ]
   }
-}
+};
+
+const author = {
+  1: {
+    name: 'Thomas Krupers',
+    age: 31,
+    location: 'Amsterdam'
+  }
+};
+
 router
   .param('guide', function (id, ctx, next) {
     // TODO: Should come from DB model!
@@ -41,6 +44,15 @@ router
   })
   .post('/guide/:guide/new-step', function (ctx, next) {
     ctx.body = 'New step posted';
+  })
+  .param('author', function (id, ctx, next) {
+    ctx.author = author[id];
+    if (!ctx.author) 
+      return ctx.status = 404;
+    return next();
+  })
+  .get('author', '/author/:author', function (ctx, next) {
+    ctx.body = ctx.author;
   });
 
 app
