@@ -1,4 +1,5 @@
 import {makeActionCreator} from 'thatlist/utility/actionCreator';
+import {getNewStepSelector} from 'thatlist/selectors/steps';
 
 /** Constants */
 
@@ -17,10 +18,8 @@ export const handleStepDescriptionChange = makeActionCreator(STEP_DESCRIPTION_CH
 
 export const handleSubmitNewStep = () => (dispatch, getState) => {
   // Get new form data from state
-  const payload = {
-    title: getState().newStepForm.title,
-    description: getState().newStepForm.description
-  };
+  const payload = getNewStepSelector(getState());
+
   // Dispatch submit action to saga
   dispatch({type: NEW_STEP_SUBMIT, payload});
 }
