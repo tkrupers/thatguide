@@ -11,7 +11,7 @@ class GuideDisplay extends React.PureComponent {
   componentDidMount() {
     const {guide, match, getGuideDetails} = this.props;
     
-    if (!Object.keys(guide).length) {
+    if (guide._id !== match.params.id) {
       getGuideDetails(match.params.id);
     }
   }

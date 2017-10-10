@@ -1,9 +1,9 @@
 import {connect} from 'react-redux';
-import {handleStepTitleChange, handleStepDescriptionChange, handleSubmitNewStep} from 'thatguide/actions/newStep';
+import {handleStepTitleChange, handleStepDescriptionChange, handleSubmitNewStep} from 'thatguide/actions/steps';
 import NewStepForm from './NewStepForm';
 
-const mapStateToProps = ({newStep}) => {
-  return {title: newStep.title, description: newStep.description}
+const mapStateToProps = (state) => {
+  return {}
 };
 
 const mapDispatchToProps = dispatch => {

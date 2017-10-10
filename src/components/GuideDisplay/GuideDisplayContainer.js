@@ -1,11 +1,12 @@
 import {connect} from 'react-redux';
 import GuideDisplay from './GuideDisplay';
-import {getGuideDetails} from 'thatguide/actions/guideDetails';
+import {getGuideDetails} from 'thatguide/actions/guides';
+import {getGuideAuthor, getCurrentGuide} from 'thatguide/selectors/guide';
 
-const mapStateToProps = ({guideDetails, author}) => {
+const mapStateToProps = state => {
   return {
-    guide: guideDetails,
-    author
+    guide: getCurrentGuide(state),
+    author: getGuideAuthor(state)
   }
 };
 

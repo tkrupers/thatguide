@@ -30,18 +30,6 @@ exports.saveAuthor = (ctx, next) => {
   author.save(err => {
     if (err) 
       return next(err);
-    
-    const guide1 = new Guide({
-      _id: new mongoose
-      .Types
-      .ObjectId(),
-      title: 'Test Guide', description: 'Short test to see if mongoose is working with population of author', author: author._id});
-
-    guide1.save(err => {
-      if (err) 
-        return next(err);
-      }
-    );
   });
 
   ctx.body = author;

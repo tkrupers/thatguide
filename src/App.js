@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
+import NewGuideForm from './components/NewGuideForm';
 import ListOfGuides from './components/ListOfGuides';
 import GuideDisplay from './components/GuideDisplay';
 import NewStepButton from './components/NewStepButton';
@@ -17,6 +18,7 @@ class App extends Component {
           <div className="container">
             <div className="col-md-8">
               <Route exact path='/' component={ListOfGuides}/>
+              <Route path='/new-guide' component={NewGuideForm}/>
               <Route path="/guide/:id" component={GuideDisplay}/>
               <Route path="/guide/:id/new-step" component={NewStepFormContainer}/>
             </div>

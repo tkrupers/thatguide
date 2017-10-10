@@ -1,5 +1,5 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
-import {GET_GUIDE_DETAILS, GET_GUIDE_DETAILS_SUCCESS, GET_GUIDE_DETAILS_ERROR} from 'thatguide/actions/guideDetails';
+import {GET_GUIDE_DETAILS, GET_GUIDE_DETAILS_SUCCESS, GET_GUIDE_DETAILS_ERROR} from 'thatguide/actions/guides';
 import {UPDATE_STEPS, UPDATE_STEPS_ERROR} from 'thatguide/actions/steps';
 import guideApi from 'thatguide/services/guide';
 

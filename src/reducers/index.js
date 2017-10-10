@@ -1,16 +1,20 @@
 import {combineReducers} from 'redux';
 import newStep from './newStep';
+import newGuide from './newGuide';
 import steps from './steps';
-import guideDetails from './guideDetails';
+import currentGuide from './currentGuide';
 import author from './author';
 import guides from './guides';
+import user from './user';
 
 const thatGuide = combineReducers({
-  guideDetails,
+  currentGuide,
   steps,
   newStep,
+  newGuide,
   author,
-  guides  
+  guides,
+  user
 });
 
 export default thatGuide;

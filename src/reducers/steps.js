@@ -1,4 +1,4 @@
-import {NEW_STEP_SUCCESS} from 'thatguide/actions/newStep';
+import {NEW_STEP_SUCCESS} from 'thatguide/actions/steps';
 import {UPDATE_STEPS} from 'thatguide/actions/steps';
 
 const initState = [
@@ -13,10 +13,7 @@ const initState = [
 export default function stepsList(state = initState, action) {
   switch (action.type) {
     case UPDATE_STEPS:
-      return [
-        ...state,
-        ...action.steps
-      ];
+      return action.steps;
     case NEW_STEP_SUCCESS:
       return [
         ...state,
