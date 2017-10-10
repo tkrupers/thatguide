@@ -1,7 +1,6 @@
 import {connect} from 'react-redux';
 import GuideDisplay from './GuideDisplay';
-import {getGuideDetails} from 'thatlist/actions/guideDetails';
-import {getAuthorById} from 'thatlist/actions/author';
+import {getGuideDetails} from 'thatguide/actions/guideDetails';
 
 const mapStateToProps = ({guideDetails, author}) => {
   return {
@@ -12,8 +11,7 @@ const mapStateToProps = ({guideDetails, author}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getGuideDetails: (guideId) => dispatch(getGuideDetails(guideId)),
-    getAuthor: (authorId) => dispatch(getAuthorById(authorId))
+    getGuideDetails: (guideId) => dispatch(getGuideDetails(guideId))
   }
 };
 

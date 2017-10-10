@@ -1,5 +1,5 @@
-import {NEW_STEP_SUCCESS} from 'thatlist/actions/newStep';
-import {UPDATE_STEPS} from 'thatlist/actions/steps';
+import {NEW_STEP_SUCCESS} from 'thatguide/actions/newStep';
+import {UPDATE_STEPS} from 'thatguide/actions/steps';
 
 const initState = [
   {

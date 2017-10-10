@@ -13,8 +13,10 @@ exports.findOneById = async (ctx, next) => {
   const guide = await Guide
     .findOne({_id: ctx.params.id})
     .populate('favs')
-    .populate({path: 'author', model: Author})
+    .populate('author', 'email name location')
     .exec();
+
+  console.log(guide);
 
   if (!guide) 
     return ctx.status = 404;

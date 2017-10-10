@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {handleStepTitleChange, handleStepDescriptionChange, handleSubmitNewStep} from 'thatlist/actions/newStep';
+import {handleStepTitleChange, handleStepDescriptionChange, handleSubmitNewStep} from 'thatguide/actions/newStep';
 import NewStepForm from './NewStepForm';
 
 const mapStateToProps = ({newStep}) => {

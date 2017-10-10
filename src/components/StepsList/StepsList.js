@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StepDisplay from 'thatlist/components/StepDisplay';
+import StepDisplay from 'thatguide/components/StepDisplay';
 
 class StepsList extends React.PureComponent {
   static propTypes = {

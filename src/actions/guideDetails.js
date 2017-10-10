@@ -1,4 +1,4 @@
-import {makeActionCreator} from 'thatlist/utility/actionCreator';
+import {makeActionCreator} from 'thatguide/utility/actionCreator';
 
 export const GET_GUIDE_DETAILS = 'GET_GUIDE_DETAILS';
 export const GET_GUIDE_DETAILS_SUCCESS = 'GET_GUIDE_DETAILS_SUCCESS';

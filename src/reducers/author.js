@@ -1,4 +1,4 @@
-import {GET_AUTHOR_SUCCESS} from 'thatlist/actions/author';
+import {GET_AUTHOR_SUCCESS} from 'thatguide/actions/author';
 
 export default function author(state = {}, action) {
   switch (action.type) {

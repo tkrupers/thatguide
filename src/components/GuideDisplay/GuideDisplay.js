@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GuideDetails from 'thatlist/components/GuideDetails';
-import StepsList from 'thatlist/components/StepsList';
+import GuideDetails from 'thatguide/components/GuideDetails';
+import StepsList from 'thatguide/components/StepsList';
 
 class GuideDisplay extends React.PureComponent {
   static propTypes = {
@@ -17,11 +17,11 @@ class GuideDisplay extends React.PureComponent {
   }
 
   render() {
-    const {guide, author} = this.props;
+    const {guide} = this.props;
 
     return (
       <div className="container">
-        <GuideDetails {...guide} author={author}/>
+        <GuideDetails {...guide}/>
         <main>
           <h3>Steps</h3>
           <StepsList />

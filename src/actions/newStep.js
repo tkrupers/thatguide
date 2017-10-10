@@ -1,6 +1,6 @@
-import {makeActionCreator} from 'thatlist/utility/actionCreator';
-import {getNewStepSelector} from 'thatlist/selectors/steps';
-import {getCurrentGuideId} from 'thatlist/selectors/guide';
+import {makeActionCreator} from 'thatguide/utility/actionCreator';
+import {getNewStepSelector} from 'thatguide/selectors/steps';
+import {getCurrentGuideId} from 'thatguide/selectors/guide';
 
 /** Constants */
 

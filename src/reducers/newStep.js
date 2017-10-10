@@ -1,4 +1,4 @@
-import {STEP_TITLE_CHANGE, STEP_DESCRIPTION_CHANGE, NEW_STEP_SUCCESS, NEW_STEP_ERROR} from 'thatlist/actions/newStep';
+import {STEP_TITLE_CHANGE, STEP_DESCRIPTION_CHANGE, NEW_STEP_SUCCESS, NEW_STEP_ERROR} from 'thatguide/actions/newStep';
 
 const initState = {
   title: '',

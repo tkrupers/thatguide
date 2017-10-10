@@ -1,14 +1,12 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
-import {GET_GUIDE_DETAILS, GET_GUIDE_DETAILS_SUCCESS, GET_GUIDE_DETAILS_ERROR} from 'thatlist/actions/guideDetails';
-import {GET_AUTHOR} from 'thatlist/actions/author';
-import {UPDATE_STEPS, UPDATE_STEPS_ERROR} from 'thatlist/actions/steps';
-import guideApi from 'thatlist/services/guide';
+import {GET_GUIDE_DETAILS, GET_GUIDE_DETAILS_SUCCESS, GET_GUIDE_DETAILS_ERROR} from 'thatguide/actions/guideDetails';
+import {UPDATE_STEPS, UPDATE_STEPS_ERROR} from 'thatguide/actions/steps';
+import guideApi from 'thatguide/services/guide';
 
 function * getDetails(action) {
   try {
     const guide = yield call(guideApi.getDetails, action.guideId);
     yield put({type: GET_GUIDE_DETAILS_SUCCESS, guide});
-    yield put({type: GET_AUTHOR, authorId: guide.authorId});
   } catch (err) {
     yield put({type: GET_GUIDE_DETAILS_ERROR, message: err.message});
   }

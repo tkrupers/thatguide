@@ -1,4 +1,4 @@
-import {makeActionCreator} from 'thatlist/utility/actionCreator';
+import {makeActionCreator} from 'thatguide/utility/actionCreator';
 
 export const GET_AUTHOR = 'GET_AUTHOR';
 export const GET_AUTHOR_SUCCESS = 'GET_AUTHOR_SUCCESS';

@@ -1,6 +1,6 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
-import {NEW_STEP_SUBMIT, NEW_STEP_ERROR, NEW_STEP_SUCCESS} from 'thatlist/actions/newStep';
-import stepApi from 'thatlist/services/step';
+import {NEW_STEP_SUBMIT, NEW_STEP_ERROR, NEW_STEP_SUCCESS} from 'thatguide/actions/newStep';
+import stepApi from 'thatguide/services/step';
 
 function * postForm(action) {
   try {

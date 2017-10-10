@@ -1,6 +1,6 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
-import {GET_AUTHOR, GET_AUTHOR_SUCCESS, GET_AUTHOR_ERROR} from 'thatlist/actions/author';
-import authorApi from 'thatlist/services/author';
+import {GET_AUTHOR, GET_AUTHOR_SUCCESS, GET_AUTHOR_ERROR} from 'thatguide/actions/author';
+import authorApi from 'thatguide/services/author';
 
 function * getAuthor(action) {
   try {
