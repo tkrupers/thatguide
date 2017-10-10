@@ -14,7 +14,7 @@ class StepsList extends React.PureComponent {
   render() {
     const {steps} = this.props;
     const stepsList = steps.length
-      ? steps.map(step => (<StepDisplay key={step._id} {...step}/>))
+      ? steps.map(step => <StepDisplay key={step._id} {...step}/>)
       : (<StepDisplay/>);
 
     return (

@@ -1,16 +1,8 @@
 import {NEW_STEP_SUCCESS} from 'thatguide/actions/steps';
 import {UPDATE_STEPS} from 'thatguide/actions/steps';
 
-const initState = [
-  {
-    id: 0,
-    stepNumber: 0,    
-    title: 'This is step 0',
-    description: 'Step 0 description coming from default state'
-  }
-];
 
-export default function stepsList(state = initState, action) {
+export default function stepsList(state = [], action) {
   switch (action.type) {
     case UPDATE_STEPS:
       return action.steps;

@@ -6,6 +6,7 @@ import ListOfGuides from './components/ListOfGuides';
 import GuideDisplay from './components/GuideDisplay';
 import NewStepButton from './components/NewStepButton';
 import NewStepFormContainer from './components/NewStepForm';
+import Loader from './components/Loader';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <nav className="navbar sticky-top navbar-light bg-light">
             <Link className="navbar-brand" to="/">That guide</Link>
           </nav>
+          <Loader />
           <div className="container">
             <div className="col-md-8">
               <Route exact path='/' component={ListOfGuides}/>
