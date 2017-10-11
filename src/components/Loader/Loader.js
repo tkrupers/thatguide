@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 
 class Loader extends React.PureComponent {
   static propTypes = {
-    loading: PropTypes.bool.isRequired
+    fetching: PropTypes.bool.isRequired,
+    saving: PropTypes.bool.isRequired    
   }
 
   render() {
-    return this.props.loading
+    return this.props.fetching || this.props.saving
       ? (
-        <div className="loader">
-          <span className="loader-text">Loading...</span>
-        </div>
+        <div className="loader"></div>
       )
       : false;
   }

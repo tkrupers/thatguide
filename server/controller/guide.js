@@ -5,7 +5,11 @@ const Guide = require('../model/guide');
 exports.fetchAll = async(ctx, next) => {
   const all = await Guide
     .find({})
-    .select('title description date');
+    .select('title description date author meta.votes')
+    .populate('author', 'name email')
+    .populate('favs')
+    .exec();
+
   ctx.body = all;
   return next();
 }

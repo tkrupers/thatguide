@@ -7,7 +7,7 @@ class NewStepButton extends React.PureComponent {
   static propTypes = {
     /** Handles click for component */
     handleClick: PropTypes.func.isRequired,
-    match: PropTypes.object
+    location: PropTypes.object
   };
 
   static defaultProps = {
@@ -17,11 +17,20 @@ class NewStepButton extends React.PureComponent {
 
   render() {
     const {location} = this.props;
-
+    const isActive = location
+      .pathname
+      .includes('new-step');
     return (
       <div className="new-step__wrapper">
-        <Link className="btn btn-primary" title="Create new step" to={`${location.pathname}/new-step`}>
-          Add new step
+        <Link
+          className={isActive
+          ? 'btn btn-primary disabled'
+          : 'btn btn-primary'}
+          title="Create new step"
+          to={`${location.pathname}/new-step`}>
+          {isActive
+            ? 'New step form opened..'
+            : 'Add new step'}
         </Link>
       </div>
     );

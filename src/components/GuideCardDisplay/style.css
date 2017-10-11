@@ -1,0 +1,12 @@
+.card .badge.badge-secondary {
+  font-size: 84%;
+}
+.card .badge .material-icons {
+  font-size: 16px;
+}
+
+.card span.badge-text {
+  position: relative;
+  bottom: 2px;
+  margin-right: 5px;
+}

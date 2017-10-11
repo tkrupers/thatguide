@@ -23,8 +23,8 @@ const withPlaceholder = (Component) => {
     }
   }
 
-  const mapStateToProps = state => {
-    return {loading: state.loader}
+  const mapStateToProps = ({loader}) => {
+    return {loading: loader.fetching}
   };
 
   return connect(mapStateToProps)(Placeholder);

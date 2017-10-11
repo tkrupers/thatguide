@@ -1,9 +1,10 @@
 import {connect} from 'react-redux';
 import Loader from './Loader';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({loader}) => {
   return {
-    loading: state.loader
+    fetching: loader.fetching,
+    saving: loader.saving
   }
 };
 

@@ -1,0 +1,12 @@
+body {
+  font-family: 'PT Sans, Helvetica Neue', sans-serif;
+  color: #444444;
+}
+
+h1, h2, h3 {
+  font-family: 'Bree Serif', serif;
+}
+
+h1 {
+  font-size: 3rem;
+}
