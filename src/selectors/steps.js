@@ -15,3 +15,8 @@ export const getNewStepSelector = createSelector(
     description: newStep.description
   })
 );
+
+export const getStepCount = createSelector(
+  getSteps,
+  steps => steps.length
+);

@@ -1,14 +1,12 @@
 import {connect} from 'react-redux';
 import StepsList from './StepsList';
+import {getStepCount, getAllSteps} from 'thatguide/selectors/steps';
 
 const mapStateToProps = (state) => {
   return {
-    steps: state.steps
+    steps: getAllSteps(state),
+    countOfSteps: getStepCount(state)
   };
 }
 
-const mapDispatchToProps = dispatch => {
-  return {};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(StepsList);
+export default connect(mapStateToProps)(StepsList);

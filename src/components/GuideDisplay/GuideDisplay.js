@@ -23,7 +23,6 @@ class GuideDisplay extends React.PureComponent {
       <div className="container">
         <GuideDetails {...guide}/>
         <main>
-          <h3>Steps</h3>
           <StepsList />
         </main>
       </div>

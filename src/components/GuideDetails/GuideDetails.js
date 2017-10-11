@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import WithParsedDate from 'thatguide/components/WithParsedDate';
+import withPlaceholder from 'thatguide/components/WithPlaceholder';
 
 class GuideDetails extends React.PureComponent {
   static propTypes = {
@@ -36,4 +37,4 @@ class GuideDetails extends React.PureComponent {
   }
 }
 
-export default WithParsedDate(GuideDetails);
+export default withPlaceholder(WithParsedDate(GuideDetails));

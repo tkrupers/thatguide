@@ -15,6 +15,7 @@ class App extends Component {
         <div className="app">
           <nav className="navbar sticky-top navbar-light bg-light">
             <Link className="navbar-brand" to="/">That guide</Link>
+            <Link to="/new-guide" className="btn btn-outline-primary">Create new guide</Link>
           </nav>
           <Loader />
           <div className="container">
