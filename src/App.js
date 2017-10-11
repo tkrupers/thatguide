@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
+import SignupForm from './components/SignupForm';
 import NewGuideForm from './components/NewGuideForm';
 import ListOfGuides from './components/ListOfGuides';
 import GuideDisplay from './components/GuideDisplay';
@@ -16,8 +17,10 @@ class App extends Component {
           <nav className="navbar sticky-top navbar-dark bg-primary">
             <Link className="navbar-brand" to="/">That guide</Link>
             <Link to="/new-guide" className="btn btn-primary">Create new guide</Link>
+            <Link to="/signup" className="btn btn-success">Signup</Link>
           </nav>
           <Loader/>
+          <Route path="/signup" component={SignupForm} />
           <div className="container">
             <div className="row">
               <div className='col-md-8 mt-2'>

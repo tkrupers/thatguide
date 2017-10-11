@@ -1,5 +1,5 @@
 import {makeActionCreator} from 'thatguide/utility/actionCreator';
-import {getCurrentUser} from 'thatguide/selectors/user';
+import {getCurrentAuthor} from 'thatguide/selectors/author';
 import {getNewGuideTitle, getNewGuideDescription} from 'thatguide/selectors/guide';
 
 
@@ -31,7 +31,7 @@ export const handleSubmitNewGuide = () => (dispatch, getState) => {
   const payload = {
     title: getNewGuideTitle(getState()),
     description: getNewGuideDescription(getState()),
-    author: getCurrentUser(getState())._id,
+    author: getCurrentAuthor(getState())._id,
   };
 
   dispatch({ type: SAVE_NEW_GUIDE, payload});
