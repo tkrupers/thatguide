@@ -8,19 +8,39 @@ import GuideDisplay from './components/GuideDisplay';
 import NewStepButton from './components/NewStepButton';
 import NewStepFormContainer from './components/NewStepForm';
 import Loader from './components/Loader';
+import AuthorProfile from './components/AuthorProfile';
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="app">
-          <nav className="navbar sticky-top navbar-dark bg-primary">
+          <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
             <Link className="navbar-brand" to="/">That guide</Link>
-            <Link to="/new-guide" className="btn btn-primary">Create new guide</Link>
-            <Link to="/signup" className="btn btn-success">Signup</Link>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to="/new-guide" className="btn btn-primary">Create new guide</Link>
+                </li>
+                <li>
+                  <Link to="/signup" className="btn btn-success">Signup</Link>
+                </li>
+              </ul>
+            </div>
           </nav>
           <Loader/>
-          <Route path="/signup" component={SignupForm} />
+          <Route path="/signup" component={SignupForm}/>
+          <Route path="/profile" component={AuthorProfile}/>
           <div className="container">
             <div className="row">
               <div className='col-md-8 mt-2'>

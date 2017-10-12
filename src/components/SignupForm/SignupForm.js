@@ -18,7 +18,7 @@ class SignupForm extends React.PureComponent {
     super(props);
 
     this.state = {
-      email: '',
+      username: '',
       password: ''
     };
 
@@ -34,7 +34,7 @@ class SignupForm extends React.PureComponent {
   }
 
   handleEmailInput(e) {
-    this.setState({email: e.target.value});
+    this.setState({username: e.target.value});
   }
 
   handlePasswordInput(e) {
@@ -44,7 +44,7 @@ class SignupForm extends React.PureComponent {
   handleSubmit(e) {
     e.preventDefault();
     const payload = {
-      email: this.state.email,
+      username: this.state.username,
       password: this.state.password
     };
 

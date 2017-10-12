@@ -1,8 +1,13 @@
 const router = require('koa-router')();
 const author = require('../controller/author');
 
-router.get('/authors/:id', author.findOneById);
+module.exports = (passport) => {
+  router.get('/authors/:id', author.findOneById);
 
-router.post('/author/new', author.saveAuthor);
+  router.post('/signup', passport.authenticate('local-signup', {
+    successRedirect: '/profile',
+    failureRedirect: '/'
+  }));
 
-module.exports = router;
+  return router;
+}
