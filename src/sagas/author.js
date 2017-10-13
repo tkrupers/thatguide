@@ -5,7 +5,7 @@ import authorApi from 'thatguide/services/author';
 function * getAuthor(action) {
   try {
     const author = yield call(authorApi.getAuthorById, action.authorId);
-    yield put({type: GET_AUTHOR_SUCCESS, author});
+    // yield put({type: GET_AUTHOR_SUCCESS, author});
   } catch (err) {
     // TODO: add better error handling
     yield put({type: GET_AUTHOR_ERROR, message: err.message});

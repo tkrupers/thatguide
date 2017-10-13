@@ -1,23 +1,33 @@
 export default class guideApi {
   static async fetchAll() {
-    return await fetch(`/guides`).then(result => result.json());
+    return await fetch(`/api/guides`).then(result => result.json());
   }
 
   static async getDetails(id) {
-    return await fetch(`/guides/${id}`).then(result => result.json());
+    return await fetch(`/api/guides/${id}`).then(result => result.json());
   }
 
   static async saveNewStep({id, payload}) {
-    return await fetch(`/guides/${id}/new-step`, {
+    return await fetch(`/api/guides/${id}/new-step`, {
       method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
       body: JSON.stringify(payload)
     }).then(result => result.json());
   }
 
   static async saveGuide(payload) {
-    return await fetch(`/guides/new`, {
+    return await fetch(`/api/guides/new`, {
       method: 'POST',
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+        credentials: 'include'
     }).then(result => result.json());
   }
 }

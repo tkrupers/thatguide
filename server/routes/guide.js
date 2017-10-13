@@ -1,12 +1,14 @@
-const router = require('koa-router')();
 const guide = require('../controller/guide');
 
-router.get('/guides', guide.fetchAll);
+module.exports = (router, passport) => {
 
-router.get('/guides/:id', guide.findOneById);
+  router.get('/guides', guide.fetchAll);
 
-router.post('/guides/new', guide.saveGuide);
+  router.get('/guides/:id', guide.findOneById);
 
-router.post('/guides/:id/new-step', guide.saveStep);
+  router.post('/guides/new', guide.saveGuide);
 
-module.exports = router;
+  router.post('/guides/:id/new-step', guide.saveStep);
+
+  return router.routes();
+}

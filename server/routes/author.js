@@ -1,13 +1,14 @@
-const router = require('koa-router')();
 const author = require('../controller/author');
 
-module.exports = (passport) => {
+module.exports = (router, passport) => {
   router.get('/authors/:id', author.findOneById);
 
-  router.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/profile',
-    failureRedirect: '/'
-  }));
+  router.post('/signup', (ctx, next) => {
+    return passport.authenticate('local-signup', async function (err, author, info) {
+      await ctx.login(author);
+      ctx.body = {_id:  ctx.state.user._id};
+    })(ctx);
+  });
 
-  return router;
+  return router.routes();
 }

@@ -40,7 +40,7 @@ class App extends Component {
           </nav>
           <Loader/>
           <Route path="/signup" component={SignupForm}/>
-          <Route path="/profile" component={AuthorProfile}/>
+          <Route exact path="/profile" component={AuthorProfile}/>
           <div className="container">
             <div className="row">
               <div className='col-md-8 mt-2'>

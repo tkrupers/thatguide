@@ -8,12 +8,16 @@ module.exports = (app, passport) => {
   app.use(passport.session());
 
   passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user._id);
   });
 
-  passport.deserializeUser((user, done) => {
-    Author.findOne({_id: user._id}, (err, author) => {
-      done(null, author);
+  passport.deserializeUser((id, done) => {
+    const userId = mongoose
+      .Schema
+      .Types
+      .ObjectId(id);
+    Author.findById(userId, function (err, author) {
+      done(err, author);
     });
   });
 
@@ -41,11 +45,10 @@ module.exports = (app, passport) => {
       });
 
       author.save((err, author) => {
-        console.log(err, author);
         if (err) 
           throw(err);
         return done(null, author);
-      })
+      });
     });
   }));
 };

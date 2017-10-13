@@ -3,15 +3,15 @@ const Step = require('../model/step');
 const Guide = require('../model/guide');
 
 exports.fetchAll = async(ctx, next) => {
-  const all = await Guide
+  const guides = await Guide
     .find({})
     .select('title description date author meta.votes')
     .populate('author', 'name email')
     .populate('favs')
     .exec();
 
-  ctx.body = all;
-  return next();
+  ctx.body = guides;
+  await next();
 }
 
 exports.findOneById = async(ctx, next) => {
@@ -26,11 +26,11 @@ exports.findOneById = async(ctx, next) => {
     return ctx.status = 404;
   
   ctx.body = guide;
-  return next();
+  await next();  
 };
 
 exports.saveGuide = async(ctx, next) => {
-  const {title, description, author} = JSON.parse(ctx.request.body);
+  const {title, description, author} = ctx.request.body;
   const guideData = {
     _id: new mongoose
       .Types
@@ -49,12 +49,11 @@ exports.saveGuide = async(ctx, next) => {
   );
 
   ctx.body = guide;
-
-  return next();
+  await next();
 }
 
 exports.saveStep = async(ctx, next) => {
-  const {title, description} = JSON.parse(ctx.request.body);
+  const {title, description} = ctx.request.body;
 
   const stepData = {
     _id: new mongoose
@@ -85,5 +84,5 @@ exports.saveStep = async(ctx, next) => {
 
   ctx.body = 'New step saved';
 
-  return next();
+  await next();
 };
