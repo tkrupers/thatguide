@@ -31,7 +31,10 @@ db.once('open', function () {
 
   // Sessions
   app.keys = [process.env.SECRET];
-  app.use(session({}, app));
+  app.use(session({
+    key: 'koa:sess',
+    maxAge: 60*60*60
+  }, app));
 
   // Initialize passport 
   require('./passport/passport')(app, passport);

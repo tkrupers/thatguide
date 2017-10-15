@@ -11,7 +11,6 @@ exports.fetchAll = async(ctx, next) => {
     .exec();
 
   ctx.body = guides;
-  await next();
 }
 
 exports.findOneById = async(ctx, next) => {
@@ -26,7 +25,6 @@ exports.findOneById = async(ctx, next) => {
     return ctx.status = 404;
   
   ctx.body = guide;
-  await next();  
 };
 
 exports.saveGuide = async(ctx, next) => {
@@ -39,17 +37,15 @@ exports.saveGuide = async(ctx, next) => {
     description,
     author
   };
-
   const guide = new Guide(guideData);
 
   guide.save(err => {
-    if (err) 
+    if (err) {
       return next(err);
     }
-  );
+  });
 
   ctx.body = guide;
-  await next();
 }
 
 exports.saveStep = async(ctx, next) => {
@@ -83,6 +79,4 @@ exports.saveStep = async(ctx, next) => {
   });
 
   ctx.body = 'New step saved';
-
-  await next();
 };

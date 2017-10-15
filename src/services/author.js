@@ -1,19 +1,27 @@
-export default class guideApi {
-  static async registerNewAuthor(payload) {
+const guideApi = {
+  parseJSON(response) {
+    return response.json()
+  },
+
+  async registerNewAuthor(payload) {
     return await fetch(`/api/signup`, {
       method: 'POST',
       body: JSON.stringify(payload),
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      }
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
       })
-      .then(result => result.json())
+      .then(guideApi.parseJSON)
       .then(data => data)
-      .catch(error => console.error(error));
-  }
+      .catch(error => error)
+  },
 
-  static async getAuthorById(authorId) {
-    return await fetch(`/api/authors/${authorId}`).then(result => result.json());
+  async getAuthorById(authorId) {
+    return await fetch(`/api/authors/${authorId}`)
+      .then(guideApi.parseJSON)
+      .catch(error => error)
   }
 }
+
+export default guideApi;

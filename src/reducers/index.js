@@ -6,6 +6,7 @@ import currentGuide from './currentGuide';
 import author from './author';
 import guides from './guides';
 import loader from './loader';
+import alert from './alert';
 
 const thatGuide = combineReducers({
   currentGuide,
@@ -14,7 +15,8 @@ const thatGuide = combineReducers({
   newGuide,
   author,
   guides,
-  loader
+  loader,
+  alert
 });
 
 export default thatGuide;

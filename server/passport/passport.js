@@ -10,7 +10,7 @@ module.exports = (app, passport) => {
   passport.serializeUser((user, done) => {
     done(null, user._id);
   });
-
+ 
   passport.deserializeUser((id, done) => {
     const userId = mongoose
       .Schema
@@ -32,7 +32,10 @@ module.exports = (app, passport) => {
       
       // If user found, return already im use message
       if (user) {
-        return done(null, false, {message: 'That email is already in use'});
+        return done(null, false, {
+          status: 422,
+          error: 'That email is already in use'
+        });
       }
 
       // Otherwise, create new author

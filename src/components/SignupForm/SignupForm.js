@@ -19,7 +19,8 @@ class SignupForm extends React.PureComponent {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      submitted: false
     };
 
     this.handleEmailInput = this
@@ -43,17 +44,18 @@ class SignupForm extends React.PureComponent {
 
   handleSubmit(e) {
     e.preventDefault();
-    const payload = {
-      username: this.state.username,
-      password: this.state.password
-    };
+    this.setState({submitted: true});
+    const {username, password} = this.state;
 
-    this
-      .props
-      .handleSubmit(payload);
+    if (username && password) {
+      this
+        .props
+        .handleSubmit({username, password});
+    }
   }
 
   render() {
+    const {username, password, submitted} = this.state;
     return (
       <section className="container">
         <h2>Signup Form</h2>
@@ -64,9 +66,11 @@ class SignupForm extends React.PureComponent {
               id="inputEmail"
               name="stepTitle"
               type="email"
-              className="form-control"
+              className={submitted && !username ? 'form-control is-invalid' : 'form-control'}
               placeholder="Email"
-              onChange={this.handleEmailInput}/>
+              onChange={this.handleEmailInput}
+              required/>
+              {(submitted && !username) && <span className="form-text text-danger">Email is required</span>}
           </div>
 
           <div className="form-group">
@@ -75,15 +79,17 @@ class SignupForm extends React.PureComponent {
               id="inputPassword"
               name="stepDescription"
               type="password"
-              className="form-control"
+              className={submitted && !password ? 'form-control is-invalid' : 'form-control'}
               placeholder="Password"
-              onChange={this.handlePasswordInput}/>
+              onChange={this.handlePasswordInput}
+              required/>
+              {(submitted && !password) && <span className="form-text text-danger">Password is required</span>}
           </div>
 
           <Link to="/login" className="btn btn-light" title="Login">Login</Link>
 
           <button type="button" className="btn btn-primary" onClick={this.handleSubmit}>
-            Submit
+            Register
           </button>
         </form>
       </section>

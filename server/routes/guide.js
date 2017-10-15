@@ -10,5 +10,5 @@ module.exports = (router, passport) => {
 
   router.post('/guides/:id/new-step', guide.saveStep);
 
-  return router.routes();
+  return router;
 }

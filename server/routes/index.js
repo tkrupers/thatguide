@@ -1,10 +1,12 @@
 const Router = require('koa-router');
+const router = new Router({
+  prefix: '/api'
+});
 
 module.exports = (app, passport) => {
-  const router = new Router({
-    prefix: '/api'
-  });
-
-  app.use(require('./guide')(router, passport));  
-  app.use(require('./author')(router, passport));
+  const author = require('./author')(router, passport);
+  const guides = require('./guide')(router, passport);
+  
+  app.use(guides.routes());  
+  app.use(author.routes());
 }
