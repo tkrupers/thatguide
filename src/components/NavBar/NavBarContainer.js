@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
-import {tryNewAuthor} from 'thatguide/actions/author';
 import {getCurrentAuthor} from 'thatguide/selectors/author';
-import SignupForm from './SignupForm';
+import {logout} from 'thatguide/actions/author';
+import NavBar from './NavBar';
 
 const mapStateToProps = (state) => {
   return {
@@ -11,8 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleSubmit: (data) => dispatch(tryNewAuthor(data))
+    logout: () => dispatch(logout())
   }
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

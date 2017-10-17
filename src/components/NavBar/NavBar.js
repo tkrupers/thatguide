@@ -4,6 +4,22 @@ import {Link} from 'react-router-dom';
 
 class NavBar extends React.PureComponent {
   render() {
+    const {loggedIn} = this.props.author;
+    const loggedInLinks = <ul className="navbar-nav ml-auto">
+      <li className="nav-item">
+        <Link to="/new-guide" className="btn btn-primary">Create new guide</Link>
+      </li>
+      <li>
+        <button onClick={this.props.logout} className="btn btn-primary">Logout</button>
+      </li>
+    </ul>;
+
+    const loggedOutLinks = <ul className="navbar-nav ml-auto">
+      <li>
+        <Link to="/signup" className="btn btn-primary">Signup</Link>
+      </li>
+    </ul>
+
     return (
       <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
         <Link className="navbar-brand" to="/">That guide</Link>
@@ -18,14 +34,9 @@ class NavBar extends React.PureComponent {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to="/new-guide" className="btn btn-primary">Create new guide</Link>
-            </li>
-            <li>
-              <Link to="/signup" className="btn btn-success">Signup</Link>
-            </li>
-          </ul>
+          {loggedIn
+            ? loggedInLinks
+            : loggedOutLinks}
         </div>
       </nav>
     );

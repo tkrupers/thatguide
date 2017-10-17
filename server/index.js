@@ -23,20 +23,19 @@ db.once('open', function () {
   const port = process.env.API_PORT || 3001;
   const host = process.env.API_HOST || 'localhost';
 
+  app.proxy = true;
+
   // Logger
   app.use(logger());
+  
+  // Sessions
+  app.keys = [process.env.SECRET];
+  app.use(session(app));
 
   // Body parser
   app.use(bodyParser());
 
-  // Sessions
-  app.keys = [process.env.SECRET];
-  app.use(session({
-    key: 'koa:sess',
-    maxAge: 60*60*60
-  }, app));
-
-  // Initialize passport 
+  // Initialize passport
   require('./passport/passport')(app, passport);
 
   // Routes

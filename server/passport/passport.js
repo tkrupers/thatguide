@@ -1,4 +1,3 @@
-const loginStrategy = require('./strategies/local-login');
 const LocalStrategy = require('passport-local').Strategy;
 const Author = require('../model/author');
 const mongoose = require('mongoose');
@@ -10,18 +9,48 @@ module.exports = (app, passport) => {
   passport.serializeUser((user, done) => {
     done(null, user._id);
   });
- 
-  passport.deserializeUser((id, done) => {
-    const userId = mongoose
-      .Schema
-      .Types
-      .ObjectId(id);
-    Author.findById(userId, function (err, author) {
-      done(err, author);
-    });
+
+  passport.deserializeUser(async(_id, done) => {
+    try {
+      const userId = mongoose
+        .Schema
+        .Types
+        .ObjectId(_id);
+
+      const author = await Author.findById(userId);
+
+      done(null, author);
+    } catch (err) {
+      done(err);
+    }
   });
 
-  passport.use('local-login', loginStrategy);
+  passport.use('local-login', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+  }, (username, password, done) => {
+    Author.findOne({
+      username
+    }, (err, user) => {
+      // If error return it
+      if (err) 
+        return done(err);
+      
+      // No user was found, return message
+      if (!user) {
+        return done(null, false, {message: 'Incorrect username'});
+      }
+  
+      // Incorrect given password for given username
+      if (!user.comparePassword(password)) {
+        return done(null, false, {message: 'Incorrect password'});
+      }
+  
+      // All good to go, return user
+      return done(null, user);
+    });
+  }));
+
   passport.use('local-signup', new LocalStrategy((username, password, done) => {
     // Try to find existing user with provided email
     Author.findOne({
@@ -32,10 +61,7 @@ module.exports = (app, passport) => {
       
       // If user found, return already im use message
       if (user) {
-        return done(null, false, {
-          status: 422,
-          error: 'That email is already in use'
-        });
+        return done(null, false, {message: 'That email is already in use'});
       }
 
       // Otherwise, create new author

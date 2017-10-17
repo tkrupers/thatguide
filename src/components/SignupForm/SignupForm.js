@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 /** Form to create a new step */
 class SignupForm extends React.PureComponent {
@@ -56,6 +56,12 @@ class SignupForm extends React.PureComponent {
 
   render() {
     const {username, password, submitted} = this.state;
+    const {author} = this.props;
+
+    if (author && author.loggedIn) {
+      return <Redirect to='/profile' />
+    };
+
     return (
       <section className="container">
         <h2>Signup Form</h2>

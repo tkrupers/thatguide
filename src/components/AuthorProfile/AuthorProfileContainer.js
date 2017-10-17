@@ -1,10 +1,18 @@
 import {connect} from 'react-redux';
+import {getCurrentAuthor} from 'thatguide/selectors/author';
+import {getAuthorById} from 'thatguide/actions/author';
 import AuthorProfile from './AuthorProfile';
 
 const mapStateToProps = state => {
   return {
-    author: state.author
+    author: getCurrentAuthor(state)
   }
 }
 
-export default connect(mapStateToProps)(AuthorProfile);
+const mapDispatchToProps = dispatch => {
+  return {
+    getAuthorDetails: authorId => dispatch(getAuthorById(authorId))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthorProfile);

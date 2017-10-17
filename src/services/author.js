@@ -1,27 +1,19 @@
-const guideApi = {
-  parseJSON(response) {
-    return response.json()
-  },
+import BaseApi from './base';
 
-  async registerNewAuthor(payload) {
-    return await fetch(`/api/signup`, {
-      method: 'POST',
-      body: JSON.stringify(payload),
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(guideApi.parseJSON)
+class GuideService extends BaseApi {
+  static registerNewAuthor(payload) {
+    return super.post(`/api/signup`, payload)
       .then(data => data)
-      .catch(error => error)
-  },
+      .catch(error => error);
+  }
 
-  async getAuthorById(authorId) {
-    return await fetch(`/api/authors/${authorId}`)
-      .then(guideApi.parseJSON)
-      .catch(error => error)
+  static getAuthorById(authorId) {
+    return super.get(`/api/authors/${authorId}`)
+  }
+
+  static logout() {
+    return super.get(`/api/logout`);
   }
 }
 
-export default guideApi;
+export default GuideService;

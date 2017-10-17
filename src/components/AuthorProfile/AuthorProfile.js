@@ -13,8 +13,15 @@ class AuthorProfile extends React.Component {
     name: 'John doe'
   }
 
+  componentDidMount() {
+    const {author, getAuthorDetails} = this.props;
+    if (!author.email) {
+      getAuthorDetails(author.id);
+    }
+  }
+
   render() {
-    const {email, name} = this.props;
+    const {email, name, location, age} = this.props.author;
 
     return (
       <div className="author-profile">
