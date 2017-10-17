@@ -59,7 +59,7 @@ class SignupForm extends React.PureComponent {
     const {author} = this.props;
 
     if (author && author.loggedIn) {
-      return <Redirect to='/profile' />
+      return <Redirect to={`/profile/${author._id}`} />
     };
 
     return (

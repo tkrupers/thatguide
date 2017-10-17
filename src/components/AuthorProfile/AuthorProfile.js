@@ -14,10 +14,8 @@ class AuthorProfile extends React.Component {
   }
 
   componentDidMount() {
-    const {author, getAuthorDetails} = this.props;
-    if (!author.email) {
-      getAuthorDetails(author.id);
-    }
+    const {match, getAuthorDetails} = this.props;
+    getAuthorDetails(match.params.id);
   }
 
   render() {
