@@ -6,48 +6,41 @@ module.exports = (app, passport) => {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  passport.serializeUser((user, done) => {
+  passport.serializeUser(function (user, done) {
     done(null, user._id);
   });
 
-  passport.deserializeUser(async(_id, done) => {
-    try {
-      const userId = mongoose
-        .Schema
-        .Types
-        .ObjectId(_id);
-
-      const author = await Author.findById(userId);
-
-      done(null, author);
-    } catch (err) {
-      done(err);
-    }
+  passport.deserializeUser(function (id, done) {
+    Author
+      .findById(id, function (err, author) {
+        done(err, author);
+      });
   });
 
-  passport.use('local-login', new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password'
-  }, (username, password, done) => {
+  passport.use('local-login', new LocalStrategy((username, password, done) => {
     Author.findOne({
-      username
+      email: username
     }, (err, user) => {
       // If error return it
       if (err) 
-        return done(err);
+        done(err);
       
       // No user was found, return message
       if (!user) {
-        return done(null, false, {message: 'Incorrect username'});
+        done(null, false, {message: 'Incorrect username'});
       }
-  
+
       // Incorrect given password for given username
-      if (!user.comparePassword(password)) {
-        return done(null, false, {message: 'Incorrect password'});
-      }
-  
+      user.comparePassword(password, user.password, (err, isMatch) => {
+        if (err) 
+          done(err);
+        if (!isMatch) {
+          done(null, false, {message: 'Incorrect password'});
+        }
+      });
+
       // All good to go, return user
-      return done(null, user);
+      done(null, user);
     });
   }));
 
@@ -57,11 +50,11 @@ module.exports = (app, passport) => {
       email: username
     }, (err, user) => {
       if (err) 
-        return done(err);
+        done(err);
       
       // If user found, return already im use message
       if (user) {
-        return done(null, false, {message: 'That email is already in use'});
+        done(null, false, {message: 'That email is already in use'});
       }
 
       // Otherwise, create new author
@@ -75,8 +68,8 @@ module.exports = (app, passport) => {
 
       author.save((err, author) => {
         if (err) 
-          throw(err);
-        return done(null, author);
+          done(err);
+        done(null, author);
       });
     });
   }));

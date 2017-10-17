@@ -15,5 +15,5 @@ export const LOGOUT_ERROR = 'LOGOUT_ERROR';
 
 export const getAuthorById = makeActionCreator(GET_AUTHOR, 'authorId');
 export const tryNewAuthor = makeActionCreator(NEW_AUTHOR_SUBMIT, 'payload');
-export const login = makeActionCreator(LOGIN, 'payload');
+export const tryLogin = makeActionCreator(LOGIN, 'payload');
 export const logout = makeActionCreator(LOGOUT);

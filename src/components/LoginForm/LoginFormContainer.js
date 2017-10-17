@@ -1,0 +1,18 @@
+import {connect} from 'react-redux';
+import {tryLogin} from 'thatguide/actions/author';
+import {getCurrentAuthor} from 'thatguide/selectors/author';
+import LoginForm from './LoginForm';
+
+const mapStateToProps = (state) => {
+  return {
+    author: getCurrentAuthor(state)
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleSubmit: (data) => dispatch(tryLogin(data))
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

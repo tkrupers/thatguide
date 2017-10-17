@@ -3,20 +3,30 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 class NavBar extends React.PureComponent {
+  static propTypes = {
+    loggedIn: PropTypes.bool,
+    logout: PropTypes.func
+  }
   render() {
-    const {loggedIn} = this.props.author;
+    const {loggedIn, _id} = this.props.author;
     const loggedInLinks = <ul className="navbar-nav ml-auto">
       <li className="nav-item">
         <Link to="/new-guide" className="btn btn-primary">Create new guide</Link>
       </li>
+      <li className="nav-item">
+        <Link to={`/profile/${_id}`} className="btn btn-primary">Profile</Link>
+      </li>
       <li>
-        <button onClick={this.props.logout} className="btn btn-primary">Logout</button>
+        <a href="/" onClick={this.props.logout} className="btn btn-primary">Logout</a>
       </li>
     </ul>;
 
     const loggedOutLinks = <ul className="navbar-nav ml-auto">
       <li>
         <Link to="/signup" className="btn btn-primary">Signup</Link>
+      </li>
+      <li>
+        <Link to="/login" className="btn btn-primary">Login</Link>
       </li>
     </ul>
 

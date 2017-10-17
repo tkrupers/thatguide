@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 import SignupForm from './components/SignupForm';
+import LoginForm from './components/LoginForm';
 import NewGuideForm from './components/NewGuideForm';
 import ListOfGuides from './components/ListOfGuides';
 import GuideDisplay from './components/GuideDisplay';
@@ -20,6 +21,7 @@ class App extends Component {
           <NavBar/>
           <Loader/>
           <Alert/>
+          <Route path="/login" component={LoginForm}/>
           <Route path="/signup" component={SignupForm}/>
           <Route exact path="/profile/:id" component={AuthorProfile}/>
           <div className="container">

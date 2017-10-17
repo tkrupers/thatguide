@@ -18,9 +18,12 @@ module.exports = (router, passport) => {
 
   router.post('/login', (ctx, next) => {
     return passport.authenticate('local-login', async function (err, author, info) {
-      ctx.body = {
-        _id: author._id
-      };
+      if (info) {
+        ctx.body = info;
+        return ctx.throw(401);
+      }
+      
+      ctx.body = {author};
       return ctx.login(author);
     })(ctx);
   });

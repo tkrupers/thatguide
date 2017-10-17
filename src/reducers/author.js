@@ -6,7 +6,7 @@ const initState = _id ? {loggedIn: true, _id} : {loggedIn: false, _id: null}
 export default function author(state = initState, action) {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      return {...state, loggedIn: true};
+      return {loggedIn: true, ...action.author};
     case GET_AUTHOR_SUCCESS:
       return {...state, ...action.author};
     case LOGOUT_SUCCESS:
