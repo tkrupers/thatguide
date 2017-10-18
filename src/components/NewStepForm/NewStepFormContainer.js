@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {handleStepTitleChange, handleStepDescriptionChange, handleSubmitNewStep} from 'thatguide/actions/steps';
+import {handleSubmitNewStep} from 'thatguide/actions/steps';
 import NewStepForm from './NewStepForm';
 
 const mapStateToProps = (state) => {
@@ -8,10 +8,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleTitleChange: ({target}) => {
-      dispatch(handleStepTitleChange(target.value));
-    },
-    handleDescriptionChange: ({target}) => dispatch(handleStepDescriptionChange(target.value)),
     handleSubmit: event => {
       event.preventDefault();
       dispatch(handleSubmitNewStep())

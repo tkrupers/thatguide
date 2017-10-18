@@ -1,54 +1,72 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink
+} from 'reactstrap';
 
 class NavBar extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this
+      .toggle
+      .bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+
   static propTypes = {
     loggedIn: PropTypes.bool,
     logout: PropTypes.func
   }
+
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
   render() {
     const {loggedIn, _id} = this.props.author;
-    const loggedInLinks = <ul className="navbar-nav ml-auto">
-      <li className="nav-item">
+    const loggedInLinks = <Nav className="ml-auto" navbar>
+      <NavItem>
         <Link to="/new-guide" className="btn btn-primary">Create new guide</Link>
-      </li>
-      <li className="nav-item">
+      </NavItem>
+      <NavItem>
         <Link to={`/profile/${_id}`} className="btn btn-primary">Profile</Link>
-      </li>
-      <li>
-        <a href="/" onClick={this.props.logout} className="btn btn-primary">Logout</a>
-      </li>
-    </ul>;
+      </NavItem>
+      <NavItem>
+        <NavLink href="/" onClick={this.props.logout} className="btn btn-primary">Logout</NavLink>
+      </NavItem>
+    </Nav>;
 
-    const loggedOutLinks = <ul className="navbar-nav ml-auto">
-      <li>
-        <Link to="/signup" className="btn btn-primary">Signup</Link>
-      </li>
-      <li>
+    const loggedOutLinks = <Nav className="ml-auto" navbar>
+      <NavItem>
+        <Link to="/signup" className="btn btn-link">Signup</Link>
+      </NavItem>
+      <NavItem>
         <Link to="/login" className="btn btn-primary">Login</Link>
-      </li>
-    </ul>
+      </NavItem>
+    </Nav>
 
     return (
-      <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
-        <Link className="navbar-brand" to="/">That guide</Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <Navbar color="faded" light fixed="true" expand="md">
+        <NavbarBrand href="/">That guide</NavbarBrand>
+        <NavbarToggler onClick={this.toggle}/>
+        <Collapse isOpen={this.state.isOpen} navbar>
           {loggedIn
             ? loggedInLinks
             : loggedOutLinks}
-        </div>
-      </nav>
+        </Collapse>
+      </Navbar>
     );
   }
 }

@@ -1,7 +1,7 @@
 import BaseApi from './base';
 
 class GuideService extends BaseApi {
-  static registerNewAuthor(payload) {
+  static register(payload) {
     return super.post(`/api/signup`, payload)
       .then(data => data)
       .catch(error => error);

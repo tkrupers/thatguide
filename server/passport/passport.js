@@ -17,60 +17,48 @@ module.exports = (app, passport) => {
       });
   });
 
-  passport.use('local-login', new LocalStrategy((username, password, done) => {
-    Author.findOne({
-      email: username
-    }, (err, user) => {
-      // If error return it
-      if (err) 
-        done(err);
-      
-      // No user was found, return message
-      if (!user) {
-        done(null, false, {message: 'Incorrect username'});
-      }
+  passport.use('local-login', new LocalStrategy(async(username, password, done) => {
+    const author = await Author.findOne({email: username});
 
-      // Incorrect given password for given username
-      user.comparePassword(password, user.password, (err, isMatch) => {
-        if (err) 
-          done(err);
-        if (!isMatch) {
-          done(null, false, {message: 'Incorrect password'});
-        }
-      });
+    // No user was found, return message
+    if (!author) {
+      return done(null, false, {message: `No user found with email: ${username}`});
+    }
 
-      // All good to go, return user
-      done(null, user);
-    });
+    // Incorrect given password for given username
+    const passwordMatch = await author.comparePassword(password, author.password, (err, isMatch) => isMatch);
+
+    if (!passwordMatch) {
+      return done(null, false, {message: `Incorrect password for user ${username}`});
+    }
+
+    done(null, author);
   }));
 
-  passport.use('local-signup', new LocalStrategy((username, password, done) => {
+  passport.use('local-signup', new LocalStrategy(async(username, password, done) => {
     // Try to find existing user with provided email
-    Author.findOne({
+    const author = await Author.findOne({
       email: username
     }, (err, user) => {
       if (err) 
         done(err);
-      
-      // If user found, return already im use message
-      if (user) {
-        done(null, false, {message: 'That email is already in use'});
       }
+    );
 
-      // Otherwise, create new author
-      const author = new Author({
-        _id: new mongoose
-          .Types
-          .ObjectId(),
-        email: username,
-        password
-      });
+    // If user found, return already im use message
+    if (author) {
+      return done(null, false, {message: `Email ${username} is already in use`});
+    }
 
-      author.save((err, author) => {
-        if (err) 
-          done(err);
-        done(null, author);
-      });
-    });
+    // Otherwise, create new author
+    const newAuthor = await new Author({
+      _id: new mongoose
+        .Types
+        .ObjectId(),
+      email: username,
+      password
+    }).save();
+
+    done(null, newAuthor);
   }));
 };

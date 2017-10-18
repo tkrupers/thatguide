@@ -8,28 +8,35 @@ module.exports = (router, passport) => {
       .authenticate('local-signup', async function (err, author, info) {
         if (info) {
           ctx.body = info;
-          return ctx.throw(401);
+          return ctx.status = 401;
         }
 
-        ctx.body = {author};
+        ctx.body = {
+          author
+        };
         return ctx.login(author);
       })(ctx);
   });
 
   router.post('/login', (ctx, next) => {
-    return passport.authenticate('local-login', async function (err, author, info) {
-      if (info) {
+    return passport.authenticate('local-login', function (err, author, info) {
+      console.log(err, author, info);
+      if (info && !author) {
         ctx.body = info;
-        return ctx.throw(401);
+        return ctx.status = 401;
       }
-      
-      ctx.body = {author};
+
+      ctx.body = {
+        author
+      };
       return ctx.login(author);
     })(ctx);
   });
 
   router.get('/logout', (ctx, next) => {
-    ctx.body = {logout: true};
+    ctx.body = {
+      logout: true
+    };
     return ctx.logout();
   });
 

@@ -1,6 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Field, reduxForm} from 'redux-form'
 import {Link, Redirect} from 'react-router-dom';
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  FormText,
+  Container,
+  Row,
+  Col
+} from 'reactstrap';
 
 /** Form to create a new step */
 class SignupForm extends React.PureComponent {
@@ -17,90 +28,99 @@ class SignupForm extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      username: '',
-      password: '',
-      submitted: false
-    };
-
-    this.handleEmailInput = this
-      .handleEmailInput
-      .bind(this);
-    this.handlePasswordInput = this
-      .handlePasswordInput
-      .bind(this);
     this.handleSubmit = this
       .handleSubmit
       .bind(this);
   }
 
-  handleEmailInput(e) {
-    this.setState({username: e.target.value});
-  }
-
-  handlePasswordInput(e) {
-    this.setState({password: e.target.value});
-  }
-
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({submitted: true});
-    const {username, password} = this.state;
 
-    if (username && password) {
+    const {values} = this.props.loginForm;
+
+    if (values.email && values.password) {
       this
         .props
-        .handleSubmit({username, password});
+        .handleSubmit({username: values.email, password: values.password});
     }
   }
 
   render() {
-    const {username, password, submitted} = this.state;
-    const {author} = this.props;
+    const {author, submitting, pristine} = this.props;
 
     if (author && author.loggedIn) {
-      return <Redirect to={`/profile/${author._id}`} />
+      return <Redirect to={`/profile/${author._id}`}/>
     };
 
     return (
-      <section className="container">
-        <h2>Signup Form</h2>
-        <form title="Create account">
-          <div className="form-group">
-            <label htmlFor="inputEmail">Email</label>
-            <input
-              id="inputEmail"
-              name="stepTitle"
-              type="email"
-              className={submitted && !username ? 'form-control is-invalid' : 'form-control'}
-              placeholder="Email"
-              onChange={this.handleEmailInput}
-              required/>
-              {(submitted && !username) && <span className="form-text text-danger">Email is required</span>}
-          </div>
+      <Container>
+        <Row>
+          <Col sm={{
+            size: 6,
+            offset: 6
+          }}>
+            <h2>Signup Form</h2>
+            <Form title="Create account" onSubmit={this.handleSubmit}>
+              <FormGroup>
+                <Label for="email">Email</Label>
+                <Field
+                  name="email"
+                  component="input"
+                  type="email"
+                  placeholder="Your email address"
+                  className="form-control"
+                  value={value => value.trim()}/>
+              </FormGroup>
 
-          <div className="form-group">
-            <label htmlFor="inputPassword">Password</label>
-            <input
-              id="inputPassword"
-              name="stepDescription"
-              type="password"
-              className={submitted && !password ? 'form-control is-invalid' : 'form-control'}
-              placeholder="Password"
-              onChange={this.handlePasswordInput}
-              required/>
-              {(submitted && !password) && <span className="form-text text-danger">Password is required</span>}
-          </div>
+              <FormGroup className="form-group">
+                <Label for="password">Password</Label>
+                <Field
+                  name="password"
+                  component="input"
+                  type="password"
+                  placeholder="Your password"
+                  className="form-control"
+                  normalize={value => value.trim()}/>
+                <FormText color="muted">
+                  Passwords are case-sensitive.
+                </FormText>
+              </FormGroup>
 
-          <Link to="/login" className="btn btn-light" title="Login">Login</Link>
+              <FormGroup className="form-group">
+                <Label for="passwordConfirm">Password</Label>
+                <Field
+                  name="passwordConfirm"
+                  component="input"
+                  type="password"
+                  placeholder="Confirm your password"
+                  className="form-control"
+                  normalize={value => value.trim()}/>
+                <FormText color="muted">
+                  Retype your password to confirm
+                </FormText>
+              </FormGroup>
 
-          <button type="button" className="btn btn-primary" onClick={this.handleSubmit}>
-            Register
-          </button>
-        </form>
-      </section>
+              <Link to="/login" className="btn btn-link" title="Login">Login</Link>
+              <Button color="primary" outline disabled={pristine || submitting}>
+                Register
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
 
-export default SignupForm;
+const validateRegister = (values) => {
+  const errors = {};
+
+  if (!values.email) {
+    errors.email = 'Required'
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address'
+  }
+
+}
+
+export default reduxForm({form: 'register', validateRegister})(SignupForm);

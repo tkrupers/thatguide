@@ -5,8 +5,6 @@ import {getCurrentGuide} from 'thatguide/selectors/guide';
 
 /** Constants */
 
-export const STEP_TITLE_CHANGE = 'STEP_TITLE_CHANGE';
-export const STEP_DESCRIPTION_CHANGE = 'STEP_DESCRIPTION_CHANGE';
 export const NEW_STEP_SUCCESS = 'NEW_STEP_SUCCESS';
 export const NEW_STEP_ERROR = 'NEW_STEP_ERROR';
 export const NEW_STEP_SUBMIT = 'NEW_STEP_SUBMIT';
@@ -15,9 +13,6 @@ export const UPDATE_STEPS_ERROR = 'UPDATE_STEPS_ERROR';
 
 
 /** Actions */
-
-export const handleStepTitleChange = makeActionCreator(STEP_TITLE_CHANGE, 'title');
-export const handleStepDescriptionChange = makeActionCreator(STEP_DESCRIPTION_CHANGE, 'description');
 
 
 /** Action thunks */

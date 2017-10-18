@@ -4,9 +4,6 @@ import {getNewGuideTitle, getNewGuideDescription} from 'thatguide/selectors/guid
 
 
 /** Constants */
-
-export const GUIDE_TITLE_CHANGE = 'GUIDE_TITLE_CHANGE';
-export const GUIDE_DESCRIPTION_CHANGE = 'GUIDE_DESCRIPTION_CHANGE';
 export const SAVE_NEW_GUIDE = 'SAVE_NEW_GUIDE';
 export const SAVE_NEW_GUIDE_SUCCESS = 'SAVE_NEW_GUIDE_SUCCESS';
 export const SAVE_NEW_GUIDE_ERROR = 'SAVE_NEW_GUIDE_ERROR';
@@ -21,8 +18,6 @@ export const GET_GUIDE_DETAILS_ERROR = 'GET_GUIDE_DETAILS_ERROR';
 /** Actions */
 
 export const getGuideDetails = makeActionCreator(GET_GUIDE_DETAILS, 'guideId');
-export const handleGuideTitleChange = makeActionCreator(GUIDE_TITLE_CHANGE, 'title');
-export const handleGuideDescriptionChange = makeActionCreator(GUIDE_DESCRIPTION_CHANGE, 'description');
 
 
 /** Action thunks */

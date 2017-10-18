@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {tryNewAuthor} from 'thatguide/actions/author';
+import {tryRegister} from 'thatguide/actions/author';
 import {getCurrentAuthor} from 'thatguide/selectors/author';
 import SignupForm from './SignupForm';
 
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleSubmit: (data) => dispatch(tryNewAuthor(data))
+    handleSubmit: (data) => dispatch(tryRegister(data))
   }
 };
 

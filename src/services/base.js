@@ -37,10 +37,15 @@ class BaseApi {
       return response.json();
     }
 
+    if (response.status === 401) {
+      return response.json();
+    }
+
     return response.json().then(data => Promise.reject(data));
   }
 
   static handleError(error) {
+    console.log(error);
     return Promise.reject(error);
   }
 }

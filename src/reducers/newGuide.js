@@ -1,4 +1,4 @@
-import {GUIDE_TITLE_CHANGE, GUIDE_DESCRIPTION_CHANGE, SAVE_NEW_GUIDE_SUCCESS, SAVE_NEW_GUIDE_ERROR} from 'thatguide/actions/guides';
+import {SAVE_NEW_GUIDE_SUCCESS, SAVE_NEW_GUIDE_ERROR} from 'thatguide/actions/guides';
 
 const initState = {
   title: '',
@@ -9,16 +9,6 @@ const initState = {
 
 export default function newStepReducer(state = initState, action) {
   switch (action.type) {
-    case GUIDE_TITLE_CHANGE:
-      return {
-        ...state,
-        title: action.title
-      };
-    case GUIDE_DESCRIPTION_CHANGE:
-      return {
-        ...state,
-        description: action.description
-      }
     case SAVE_NEW_GUIDE_ERROR:
       return {
         ...state,
