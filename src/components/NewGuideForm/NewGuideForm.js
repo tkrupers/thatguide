@@ -1,8 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Field, reduxForm} from 'redux-form'
+
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  FormText,
+  Container,
+  Row,
+  Col
+} from 'reactstrap';
 
 /** Form to create a new guide */
 class NewGuideForm extends React.PureComponent {
+  constructor() {
+    super();
+
+    this.handleSubmit = this
+      .handleSubmit
+      .bind(this);
+  }
   static propTypes = {
     /** New guide title */
     title: PropTypes.string,
@@ -17,48 +36,61 @@ class NewGuideForm extends React.PureComponent {
     onSubmit: () => {}
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    this
+      .props
+      .handleSubmit()
+  }
+
   render() {
-    const {history} = this.props;
+    const {history, pristine, submitting} = this.props;
 
     return (
-      <section className="new-guide-form__wrapper">
-        <h2>New Guide form</h2>
-        <form title="Create new guide form">
-          <div className="form-group">
-            <label htmlFor="inputGuideTitle">Title</label>
-            <input
-              id="inputGuideTitle"
-              name="guideTitle"
-              type="text"
-              className="form-control"
-              placeholder="Awesome clear title"
-              value={this.props.title}
-              onChange={this.props.handleTitleChange}/>
-          </div>
+      <Container>
+        <Row>
+          <Col sm={{
+            size: 6,
+            offset: 6
+          }}>
+            <h2>New Guide form</h2>
+            <Form title="Create new guide form" onSubmit={this.handleSubmit}>
+              <FormGroup>
+                <Label for="guideTitle">Title</Label>
+                <Field
+                  name="guideTitle"
+                  component="input"
+                  type="text"
+                  placeholder="New guide title"
+                  className="form-control"
+                  value={value => value.trim()}/>
+              </FormGroup>
 
-          <div className="form-group">
-            <label htmlFor="textAreaGuideDescription">Description</label>
-            <textarea
-              id="textAreaGuideDescription"
-              name="guideDescription"
-              className="form-control"
-              placeholder="What should a dummy do?"
-              value={this.props.description}
-              onChange={this.props.handleDescriptionChange}/>
-          </div>
+              <FormGroup>
+                <Label for="guideDescription">Description</Label>
+                <Field
+                  name="guideDescription"
+                  component="textarea"
+                  placeholder="Short description of your guide"
+                  className="form-control"/>
+              </FormGroup>
 
-          <button type="button" onClick={history.goBack} className="btn btn-light" title="Cancel">Cancel</button>
+              <Button
+                type="button"
+                onClick={history.goBack}
+                color="light"
+                title="Cancel"
+                outline>Cancel</Button>
 
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={this.props.handleSubmit}>
-            Submit
-          </button>
-        </form>
-      </section>
+              <Button color="primary" outline disabled={pristine || submitting}>
+                Create
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
 
-export default NewGuideForm;
+export default reduxForm({form: 'guide'})(NewGuideForm);

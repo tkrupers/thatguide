@@ -3,15 +3,12 @@ import {handleSubmitNewGuide} from 'thatguide/actions/guides';
 import NewGuideForm from './NewGuideForm';
 
 const mapStateToProps = (state) => {
-  return {}
+  return {guideForm: state.form.guideForm}
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleSubmit: event => {
-      event.preventDefault();
-      dispatch(handleSubmitNewGuide())
-    }
+    handleSubmit: () => dispatch(handleSubmitNewGuide())
   }
 };
 

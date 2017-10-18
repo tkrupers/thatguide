@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {MdThumbUp, MdFavorite} from 'react-icons/lib/md';
 import withPlaceholder from 'thatguide/components/WithPlaceholder';
 import withParsedDate from 'thatguide/components/WithParsedDate';
 
@@ -37,11 +38,11 @@ class GuideCardDisplay extends React.PureComponent {
         <div className="card-footer">
           <span className="badge badge-pill badge-success mr-1">
             <span className="badge-text">{votes}</span>
-            <i className="material-icons">thumb_up</i>
+            <MdThumbUp />
           </span>
           <span className="badge badge-pill badge-danger mr-2">
             <span className="badge-text">{favs}</span>
-            <i className="material-icons">favorite</i>
+            <MdFavorite />
           </span>
           <small className="text-muted">{parsedDate}</small>
         </div>

@@ -5,7 +5,8 @@ import SignupForm from './SignupForm';
 
 const mapStateToProps = (state) => {
   return {
-    author: getCurrentAuthor(state)
+    author: getCurrentAuthor(state),
+    registerForm: state.form.register
   }
 };
 

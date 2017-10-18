@@ -17,12 +17,14 @@ import {
 class SignupForm extends React.PureComponent {
   static propTypes = {
     /** Handles submit for component */
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    registerForm: PropTypes.object
   }
 
   static defaultProps = {
     /** Placeholder function */
-    onSubmit: () => {}
+    onSubmit: () => {},
+    registerForm: {}
   }
 
   constructor(props) {
@@ -36,8 +38,9 @@ class SignupForm extends React.PureComponent {
   handleSubmit(e) {
     e.preventDefault();
 
-    const {values} = this.props.loginForm;
+    const {values} = this.props.registerForm;
 
+    console.log(this.props.registerForm);
     if (values.email && values.password) {
       this
         .props

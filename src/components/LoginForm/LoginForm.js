@@ -90,7 +90,7 @@ class LoginForm extends React.PureComponent {
 
               <Link to="/signup" className="btn btn-link" title="Login">Register</Link>
 
-              <Button color="success" outline>
+              <Button color="primary" outline>
                 Login
               </Button>
             </Form>

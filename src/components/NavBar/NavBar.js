@@ -10,6 +10,7 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
+import {MdAccountCircle, MdCreate, MdExitToApp} from 'react-icons/lib/md';
 
 class NavBar extends React.PureComponent {
   constructor(props) {
@@ -38,13 +39,19 @@ class NavBar extends React.PureComponent {
     const {loggedIn, _id} = this.props.author;
     const loggedInLinks = <Nav className="ml-auto" navbar>
       <NavItem>
-        <Link to="/new-guide" className="btn btn-primary">Create new guide</Link>
+        <Link to="/new-guide" className="nav-link"><MdCreate/>
+          New Guide
+        </Link>
       </NavItem>
       <NavItem>
-        <Link to={`/profile/${_id}`} className="btn btn-primary">Profile</Link>
+        <Link to={`/profile/${_id}`} className="nav-link"><MdAccountCircle/>
+          Profile
+        </Link>
       </NavItem>
       <NavItem>
-        <NavLink href="/" onClick={this.props.logout} className="btn btn-primary">Logout</NavLink>
+        <NavLink href="/" onClick={this.props.logout} className="nav-link"><MdExitToApp/>
+          Logout
+        </NavLink>
       </NavItem>
     </Nav>;
 
@@ -53,13 +60,13 @@ class NavBar extends React.PureComponent {
         <Link to="/signup" className="btn btn-link">Signup</Link>
       </NavItem>
       <NavItem>
-        <Link to="/login" className="btn btn-primary">Login</Link>
+        <Link to="/login" className="btn btn-outline-primary">Login</Link>
       </NavItem>
     </Nav>
 
     return (
       <Navbar color="faded" light fixed="true" expand="md">
-        <NavbarBrand href="/">That guide</NavbarBrand>
+        <Link to="/" className="navbar-brand">That Guide</Link>
         <NavbarToggler onClick={this.toggle}/>
         <Collapse isOpen={this.state.isOpen} navbar>
           {loggedIn

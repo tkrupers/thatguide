@@ -2,7 +2,6 @@ import {makeActionCreator} from 'thatguide/utility/actionCreator';
 import {getCurrentAuthor} from 'thatguide/selectors/author';
 import {getNewGuideTitle, getNewGuideDescription} from 'thatguide/selectors/guide';
 
-
 /** Constants */
 export const SAVE_NEW_GUIDE = 'SAVE_NEW_GUIDE';
 export const SAVE_NEW_GUIDE_SUCCESS = 'SAVE_NEW_GUIDE_SUCCESS';
@@ -14,22 +13,29 @@ export const GET_GUIDE_DETAILS = 'GET_GUIDE_DETAILS';
 export const GET_GUIDE_DETAILS_SUCCESS = 'GET_GUIDE_DETAILS_SUCCESS';
 export const GET_GUIDE_DETAILS_ERROR = 'GET_GUIDE_DETAILS_ERROR';
 
-
 /** Actions */
 
 export const getGuideDetails = makeActionCreator(GET_GUIDE_DETAILS, 'guideId');
 
-
 /** Action thunks */
 
 export const handleSubmitNewGuide = () => (dispatch, getState) => {
+  const {
+    guide: {
+      values: {
+        guideTitle,
+        guideDescription
+      }
+    }
+  } = getState().form;
+
   const payload = {
-    title: getNewGuideTitle(getState()),
-    description: getNewGuideDescription(getState()),
-    author: getCurrentAuthor(getState())._id,
+    title: guideTitle,
+    description: guideDescription,
+    author: getCurrentAuthor(getState())._id
   };
 
-  dispatch({ type: SAVE_NEW_GUIDE, payload});
+  dispatch({type: SAVE_NEW_GUIDE, payload});
 }
 
 export const fetchAllGuides = () => (dispatch, getState) => {
