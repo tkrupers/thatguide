@@ -8,7 +8,7 @@ import PlaceholderComponent from './Placeholder';
  * @param {*} Component 
  */
 const withPlaceholder = (Component) => {
-  class Placeholder extends React.Component {
+  class Placeholder extends React.PureComponent {
     static propTypes = {
       loading: PropTypes.bool.isRequired
     }

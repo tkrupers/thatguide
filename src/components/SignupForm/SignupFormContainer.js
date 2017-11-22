@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {tryRegister} from 'thatguide/actions/author';
+import {tryRegister} from 'thatguide/actions/user';
 import {getCurrentAuthor} from 'thatguide/selectors/author';
 import SignupForm from './SignupForm';
 

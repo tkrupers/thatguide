@@ -7,6 +7,7 @@ import author from './author';
 import guides from './guides';
 import loader from './loader';
 import alert from './alert';
+import user from './user';
 
 const thatGuide = combineReducers({
   currentGuide,
@@ -16,6 +17,7 @@ const thatGuide = combineReducers({
   guides,
   loader,
   alert,
+  user,
   form: formReducer
 });
 

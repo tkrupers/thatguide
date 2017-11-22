@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import WithPlaceholder from 'thatguide/components/WithPlaceholder';
 
-class AuthorProfile extends React.Component {
+class AuthorProfile extends React.PureComponent {
   static propTypes = {
     email: PropTypes.string.isRequired,
     name: PropTypes.string,

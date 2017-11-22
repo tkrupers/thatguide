@@ -1,4 +1,4 @@
-import {LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, REGISTER_ERROR, REGISTER_SUCCESS} from 'thatguide/actions/author';
+import {LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, REGISTER_ERROR, REGISTER_SUCCESS} from 'thatguide/actions/user';
 import {DISMISS_ALERT} from 'thatguide/actions/alert';
 
 const initState = {
@@ -14,7 +14,7 @@ export default function alert(state = initState, action) {
       return {show: true, status: 'danger', message: action.message};
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
-      return {show: true, status: 'success', message: `Welcome ${action.author.email}`}
+      return {show: true, status: 'success', message: `Welcome ${action.user.email}`}
     case DISMISS_ALERT:
     case LOGOUT_SUCCESS:
       return initState;
