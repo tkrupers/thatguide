@@ -19,7 +19,7 @@ class AuthorProfile extends React.PureComponent {
   }
 
   render() {
-    const {email, name, location, age} = this.props.author;
+    const {email, name} = this.props.author;
 
     return (
       <div className="author-profile">

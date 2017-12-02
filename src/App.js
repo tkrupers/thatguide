@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
@@ -16,37 +17,30 @@ import Alert from './components/Alert';
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div className="app">
-          <NavBar/>
-          <Loader/>
-          <Alert/>
+      <div className="app">
+        <NavBar currentUser={this.props.currentUser}/>
+        <Loader/>
+        <Alert/>
+        <Switch>
           <Route path="/login" component={LoginForm}/>
           <Route path="/signup" component={SignupForm}/>
           <Route exact path="/profile/:id" component={AuthorProfile}/>
-          <div className="container">
-            <div className="row">
-              <div className='col-md-8 mt-2'>
-                <Route
-                  exact
-                  path='/'
-                  render={(props) => < ListOfGuides card {
-                  ...props
-                } />}/>
-                <Route path='/new-guide' component={NewGuideForm}/>
-                <Route path="/guide/:id" component={GuideDisplay}/>
-                <Route path="/guide/:id/new-step" component={NewStepFormContainer}/>
-              </div>
-              <aside className="col-md-4 mt-2">
-                <Route path="/guide/:id" component={NewStepButton}/>
-                <Route path="/guide/:id" component={ListOfGuides}/>
-              </aside>
-            </div>
-          </div>
-        </div>
-      </Router>
+          <Route exact path='/' render={(props) => <ListOfGuides card { ...props }/>}/>
+          <Route path='/new-guide' component={NewGuideForm}/>
+          <Route path="/guide/:id" component={GuideDisplay}/>
+          <Route path="/guide/:id/new-step" component={NewStepFormContainer}/>
+          <Route path="/guide/:id" component={NewStepButton}/>
+          <Route path="/guide/:id" component={ListOfGuides}/>
+        </Switch>
+      </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = ({user}) => {
+  return {
+    currentUser: user
+  }
+}
+
+export default connect(mapStateToProps, () => ({}))(App);

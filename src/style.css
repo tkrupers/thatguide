@@ -10,3 +10,12 @@ h1, h2, h3 {
 h1 {
   font-size: 3rem;
 }
+
+a.nav-link {
+  display: flex;
+  align-items: center;
+}
+
+a.nav-link svg {
+  margin-right: 5px;
+}

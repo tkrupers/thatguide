@@ -1,7 +1,7 @@
 import {createSelector} from 'reselect';
 
-const getGuide = state => state.currentGuide;
-const guides = state => state.guides;
+const getGuide = state => state.guide.guide;
+const guides = state => state.guide.guides;
 const getAuthor = state => getGuide.author;
 const newGuideTitle = state => state.newGuide.title;
 const newGuideDescription = state => state.newGuide.description;
