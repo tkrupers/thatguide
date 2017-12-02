@@ -4,7 +4,7 @@ import ListOfGuides from './ListOfGuides';
 
 const mapStateToProps = state => {
   return {
-    guides: state.guides
+    guides: state.guide.guides
   }
 }
 

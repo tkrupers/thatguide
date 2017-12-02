@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Moment from 'moment';
 
 const withParsedDate = (Component) => {
-  return class parsedDate extends React.Component {
+  return class parsedDate extends React.PureComponent {
     static propTypes = {
       date: PropTypes.string.isRequired
     }

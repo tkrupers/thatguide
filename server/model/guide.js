@@ -6,12 +6,12 @@ const schema = new Schema({
   title: String,
   description: String,
   steps: [{ type: Schema.Types.ObjectId, ref: 'Step'}],
-  author: {type: Schema.Types.ObjectId, ref: 'Author', required: true},
+  author: {type: Schema.Types.ObjectId, ref: 'User', required: true},
   date: { type: Date, default: Date.now },
   published: Boolean,
   meta: {
     votes: Number,
-    favs: [{ type: Schema.Types.ObjectId, ref: 'Author'}]
+    favs: [{ type: Schema.Types.ObjectId, ref: 'User'}]
   }
 });
 

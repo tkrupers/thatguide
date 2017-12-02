@@ -11,19 +11,19 @@ class GuideCardDisplay extends React.PureComponent {
     description: PropTypes.string,
     image: PropTypes.string,
     date: PropTypes.string.isRequired,
-    author: PropTypes.object
+    user: PropTypes.object
   }
 
   static defaultProps = {
     title: 'No title here',
     date: new Date(),
-    author: {},
+    user: {},
     votes: 0,
     favs: 0
   }
 
   render() {
-    const {title, description, _id, parsedDate, author, votes, favs} = this.props;
+    const {title, description, _id, parsedDate, user, votes, favs} = this.props;
 
     return (
       <div className="card">
@@ -31,7 +31,7 @@ class GuideCardDisplay extends React.PureComponent {
         <div className="card-body">
           <h4 className="card-title">
             <Link to={`/guide/${_id}`}>{title}</Link>
-            <small>{author.name}</small>
+            <small>{user.name}</small>
           </h4>
           <p className="card-text">{description}</p>
         </div>

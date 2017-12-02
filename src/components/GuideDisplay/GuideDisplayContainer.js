@@ -6,7 +6,7 @@ import {getGuideAuthor, getCurrentGuide} from 'thatguide/selectors/guide';
 const mapStateToProps = state => {
   return {
     guide: getCurrentGuide(state),
-    author: getGuideAuthor(state)
+    user: getGuideAuthor(state)
   }
 };
 

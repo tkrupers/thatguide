@@ -5,7 +5,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   NavLink
@@ -36,21 +35,21 @@ class NavBar extends React.PureComponent {
   }
 
   render() {
-    const {loggedIn, _id} = this.props.author;
+    const {loggedIn, _id} = this.props.user;
     const loggedInLinks = <Nav className="ml-auto" navbar>
       <NavItem>
-        <Link to="/new-guide" className="nav-link"><MdCreate/>
-          New Guide
+        <Link to="/new-guide" className="nav-link">
+        <MdCreate/> New Guide
         </Link>
       </NavItem>
       <NavItem>
-        <Link to={`/profile/${_id}`} className="nav-link"><MdAccountCircle/>
-          Profile
+        <Link to={`/profile/${_id}`} className="nav-link">
+        <MdAccountCircle/> Profile
         </Link>
       </NavItem>
       <NavItem>
-        <NavLink href="/" onClick={this.props.logout} className="nav-link"><MdExitToApp/>
-          Logout
+        <NavLink href="/" onClick={this.props.logout} className="nav-link">
+        <MdExitToApp/> Logout
         </NavLink>
       </NavItem>
     </Nav>;

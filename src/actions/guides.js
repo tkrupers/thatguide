@@ -1,6 +1,5 @@
 import {makeActionCreator} from 'thatguide/utility/actionCreator';
 import {getCurrentAuthor} from 'thatguide/selectors/author';
-import {getNewGuideTitle, getNewGuideDescription} from 'thatguide/selectors/guide';
 
 /** Constants */
 export const SAVE_NEW_GUIDE = 'SAVE_NEW_GUIDE';

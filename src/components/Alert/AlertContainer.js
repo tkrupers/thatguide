@@ -2,8 +2,9 @@ import {connect} from 'react-redux';
 import {dismissAlert} from 'thatguide/actions/alert';
 import Alert from './Alert';
 
-const mapStateToProps = ({alert}) => ({
-  alert
+const mapStateToProps = ({alert, loader}) => ({
+  alert,
+  loader
 });
 
 const mapDispatchToProps = dispatch => ({

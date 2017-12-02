@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
-const Author = require('../model/author');
+const User = require('../model/user');
 const mongoose = require('mongoose');
 
 module.exports = (app, passport) => {
@@ -11,14 +11,14 @@ module.exports = (app, passport) => {
   });
 
   passport.deserializeUser(function (id, done) {
-    Author
+    User
       .findById(id, function (err, author) {
         done(err, author);
       });
   });
 
   passport.use('local-login', new LocalStrategy(async(username, password, done) => {
-    const author = await Author.findOne({email: username});
+    const author = await User.findOne({email: username});
 
     // No user was found, return message
     if (!author) {
@@ -37,7 +37,7 @@ module.exports = (app, passport) => {
 
   passport.use('local-signup', new LocalStrategy(async(username, password, done) => {
     // Try to find existing user with provided email
-    const author = await Author.findOne({
+    const author = await User.findOne({
       email: username
     }, (err, user) => {
       if (err) 
@@ -51,7 +51,7 @@ module.exports = (app, passport) => {
     }
 
     // Otherwise, create new author
-    const newAuthor = await new Author({
+    const newUser = await new User({
       _id: new mongoose
         .Types
         .ObjectId(),
@@ -59,6 +59,6 @@ module.exports = (app, passport) => {
       password
     }).save();
 
-    done(null, newAuthor);
+    done(null, newUser);
   }));
 };

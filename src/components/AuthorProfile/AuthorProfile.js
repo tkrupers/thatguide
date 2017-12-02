@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import WithPlaceholder from 'thatguide/components/WithPlaceholder';
 
-class AuthorProfile extends React.Component {
+class AuthorProfile extends React.PureComponent {
   static propTypes = {
     email: PropTypes.string.isRequired,
     name: PropTypes.string,
@@ -19,7 +19,7 @@ class AuthorProfile extends React.Component {
   }
 
   render() {
-    const {email, name, location, age} = this.props.author;
+    const {email, name} = this.props.author;
 
     return (
       <div className="author-profile">

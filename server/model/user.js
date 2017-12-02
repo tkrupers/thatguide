@@ -28,20 +28,20 @@ const schema = new Schema({
 
 // Middleware to hash password before saving to DB
 schema.pre('save', function (next) {
-  const author = this;
+  const user = this;
 
-  if (!author.isModified('password')) 
+  if (!user.isModified('password')) 
     return next();
   
   bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
     if (err) 
       return next(err);
     
-    bcrypt.hash(author.password, salt, (err, hash) => {
+    bcrypt.hash(user.password, salt, (err, hash) => {
       if (err) 
         return next(err);
       
-      author.password = hash;
+      user.password = hash;
 
       next();
     })
@@ -56,6 +56,6 @@ schema.methods.comparePassword = (candidatePassword, password, cb) => {
   });
 }
 
-const Author = mongoose.model('Author', schema);
+const User = mongoose.model('User', schema);
 
-module.exports = Author;
+module.exports = User;

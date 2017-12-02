@@ -1,11 +1,11 @@
 import {connect} from 'react-redux';
-import {getCurrentAuthor} from 'thatguide/selectors/author';
-import {logout} from 'thatguide/actions/author';
+import {getUser} from 'thatguide/selectors/user';
+import {logout} from 'thatguide/actions/user';
 import NavBar from './NavBar';
 
 const mapStateToProps = (state) => {
   return {
-    author: getCurrentAuthor(state)
+    user: getUser(state)
   }
 };
 

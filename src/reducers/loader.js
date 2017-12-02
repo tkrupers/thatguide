@@ -7,6 +7,7 @@ import {
   FETCH_GUIDES_ERROR
 } from 'thatguide/actions/guides';
 import {NEW_STEP_SUBMIT, NEW_STEP_SUCCESS, NEW_STEP_ERROR} from 'thatguide/actions/steps';
+import {LOGIN, LOGIN_SUCCESS, LOGIN_ERROR} from 'thatguide/actions/user';
 
 const initState = {
   fetching: false,
@@ -17,6 +18,7 @@ export default function loader(state = initState, action) {
   switch (action.type) {
     case GET_GUIDE_DETAILS:
     case FETCH_GUIDES:
+    case LOGIN:
       return {
         ...state,
         fetching: true
@@ -32,6 +34,8 @@ export default function loader(state = initState, action) {
     case FETCH_GUIDES_ERROR:
     case NEW_STEP_SUCCESS:
     case NEW_STEP_ERROR:
+    case LOGIN_SUCCESS:
+    case LOGIN_ERROR:
       return {
         saving: false,
         fetching: false
